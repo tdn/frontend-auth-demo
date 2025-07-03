@@ -1,0 +1,12 @@
+<div>
+  <div>
+    {{#if this.fastboot.isFastBoot}}
+      Loading...
+    {{else}}
+      <p>This <a href="https://yasgui.triply.cc/" target="_blank">YASGUI</a> editor sends an authenticated SPARQL query to the <a href="https://semantic.works">semantic.works</a> stack, where the query will be rewritten according to the authorization rules provided to <a href="https://github.com/mu-semtech/sparql-parser">sparql-parser</a>.</p>
+      <p>Depending on which profile you are <a href="#">logged in</a> as, you will either only be able to query public books, or also private books.</p>
+      <div {{yasgui}}></div>
+      {{outlet}}
+    {{/if}}
+  </div>
+</div>

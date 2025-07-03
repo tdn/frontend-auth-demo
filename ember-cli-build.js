@@ -15,6 +15,6 @@ module.exports = function (defaults) {
     },
     // Add options here
   });
-
+  app.import('node_modules/@triply/yasgui/build/yasgui.min.css');
   return app.toTree();
 };

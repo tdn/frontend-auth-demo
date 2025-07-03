@@ -13,6 +13,11 @@ module.exports = function (environment) {
         // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
     },
+    yasgui: {
+      // NOTE: look at app/modifiers/yasgui.js when changing this variable
+      defaultQuery: 'EMBER_YASGUI_DEFAULT_QUERY',
+      extraPrefixes: 'EMBER_YASGUI_EXTRA_PREFIXES',
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
