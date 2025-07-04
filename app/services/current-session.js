@@ -14,12 +14,6 @@ export default class CurrentSessionService extends Service {
   @tracked role;
   @tracked isLoggedIn;
 
-  constructor() {
-    super(...arguments);
-
-    this.lifecycle();
-  }
-
   /* eslint-disable ember/no-get */
   async load() {
     if (this.session.isAuthenticated) {

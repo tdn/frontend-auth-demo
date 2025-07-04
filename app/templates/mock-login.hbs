@@ -11,47 +11,32 @@
               <MockLogin as |login|>
                 {{#if login.errorMessage}}
                   {{#if (includes "403" (w (lowercase login.errorMessage)))}}
-                    <AuAlert
-                      @skin="error"
-                      @icon="circle-x"
-                      @size="small"
-                    >
-                      <p>{{t "application-unauthorized-message"}}</p>
-                    </AuAlert>
+                    {{!-- <alert --}}
+                    <p>not authorized</p>
+                    {{!-- /alert --}}
                   {{else}}
-                    <AuAlert
-                      @skin="error"
-                      @icon="circle-x"
-                      @size="small"
-                    >
+                    {{!-- <alert --}}
                       <p>{{login.errorMessage}}</p>
-                    </AuAlert>
+                    {{!-- /alert --}}
                   {{/if}}
                 {{/if}}
                 {{#if this.model.length}}
-                  <AuList
-                    class="auk-u-mb auk-table--clickable-rows"
-                    data-test-mock-login-list
-                    as |Item|
-                  >
+                  <ul>
                     {{#each this.model as |account|}}
-                      <Item
+                      <li
                         class="auk-o-flex auk-o-flex--justify-between auk-o-flex--vertical-center au-u-padding-small"
                         {{on "click" (fn login.login account.id account.user.group.id)}}
                       >
                         <div class="auk-u-mx-2">
                           <span>{{account.user.firstName}} {{account.user.lastName}}</span>
                         </div>
-                        <AuButton
-                          @skin="naked"
-                          @icon="chevron-right"
-                          @hideText={{true}}
-                        >
-                          {{t "login"}}
-                        </AuButton>
-                      </Item>
+                        {{!-- AuButton --}}
+                        <button type="button">
+                          login
+                        </button>
+                      </li>
                     {{/each}}
-                  </AuList>
+                  </ul>
                 {{else}}
                   No mock accounts found.
                 {{/if}}

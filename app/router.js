@@ -10,4 +10,8 @@ Router.map(function () {
   this.route('books');
   this.route('sparql');
   this.route('mock-login');
+
+  this.route('auth', function() {
+    this.route('logout');
+  });
 });

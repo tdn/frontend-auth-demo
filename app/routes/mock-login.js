@@ -15,7 +15,7 @@ export default class MockLoginRoute extends Route {
       filter: {
         provider: 'https://github.com/lblod/mock-login-service',
       },
-      sort: 'user.memberships.role.position,user.first-name,user.last-name',
+      sort: 'user.first-name,user.last-name',
     });
   }
 }
