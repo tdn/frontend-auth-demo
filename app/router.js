@@ -7,7 +7,9 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('books', function() {});
+  this.route('books', function() {
+    this.route('show', { path: ":book_id" });
+  });
   this.route('sparql');
   this.route('mock-login');
 
