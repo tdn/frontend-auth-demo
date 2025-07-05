@@ -1,50 +1,36 @@
-{{!-- template-lint-disable no-bare-strings --}}
-<div class="auk-scroll-wrapper">
-  <div class="auk-scroll-wrapper__body">
-    <div class="auk-u-p-4">
-      <div class="auk-o-flex auk-o-flex--horizontal-center">
-        <div class="auk-u-maximize-width auk-u-max-width-xlarge">
-          <div class="auk-u-my-4">
-            <h5 class="au-u-h5 au-u-medium auk-u-mb-2">Mock Login</h5>
-            <p class="auk-u-mb-4">Choose a user to test the application with:</p>
-            <div class="auk-panel auk-u-mb-8">
-              <MockLogin as |login|>
-                {{#if login.errorMessage}}
-                  {{#if (includes "403" (w (lowercase login.errorMessage)))}}
-                    {{!-- <alert --}}
-                    <p>not authorized</p>
-                    {{!-- /alert --}}
-                  {{else}}
-                    {{!-- <alert --}}
-                      <p>{{login.errorMessage}}</p>
-                    {{!-- /alert --}}
-                  {{/if}}
-                {{/if}}
-                {{#if this.model.length}}
-                  <ul>
-                    {{#each this.model as |account|}}
-                      <li
-                        class="auk-o-flex auk-o-flex--justify-between auk-o-flex--vertical-center au-u-padding-small"
-                        {{on "click" (fn login.login account.id account.user.group.id)}}
-                      >
-                        <div class="auk-u-mx-2">
-                          <span>{{account.user.firstName}} {{account.user.lastName}}</span>
-                        </div>
-                        {{!-- AuButton --}}
-                        <button type="button">
-                          login
-                        </button>
-                      </li>
-                    {{/each}}
-                  </ul>
-                {{else}}
-                  No mock accounts found.
-                {{/if}}
-              </MockLogin>
+<h5>Mock Login</h5>
+<p>Choose a user to test the application with:</p>
+<div>
+  <MockLogin as |login|>
+    {{#if login.errorMessage}}
+      {{#if (includes "403" (w (lowercase login.errorMessage)))}}
+        {{!-- <alert --}}
+        <p>not authorized</p>
+        {{!-- /alert --}}
+      {{else}}
+        {{!-- <alert --}}
+          <p>{{login.errorMessage}}</p>
+        {{!-- /alert --}}
+      {{/if}}
+    {{/if}}
+    {{#if this.model.length}}
+      <ul>
+        {{#each this.model as |account|}}
+          <li
+            {{on "click" (fn login.login account.id account.user.group.id)}}
+          >
+            <div>
+              <span>{{account.user.firstName}} {{account.user.lastName}}</span>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            {{!-- AuButton --}}
+            <button type="button">
+              login
+            </button>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      No mock accounts found.
+    {{/if}}
+  </MockLogin>
 </div>

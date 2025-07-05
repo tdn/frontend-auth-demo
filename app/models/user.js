@@ -1,7 +1,13 @@
-import Model, { attr, hasMany } from '@ember-data/model';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default class UserModel extends Model {
-  @hasMany('account', { async: true, inverse: "user" }) accounts;
+  @belongsTo('account', { async: true, inverse: "user" }) account;
+  @hasMany('membership', { inverse: 'user', async: false }) memberships;
   @attr('string') firstName;
   @attr('string') lastName;
+  @attr() uri;
+
+  get group() {
+    return this.memberships.at(0);
+  }
 }
