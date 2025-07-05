@@ -16,14 +16,12 @@
     {{#if this.model.length}}
       <ul>
         {{#each this.model as |account|}}
-          <li
-            {{on "click" (fn login.login account.id account.user.group.id)}}
-          >
+          <li>
             <div>
               <span>{{account.user.firstName}} {{account.user.lastName}}</span>
             </div>
             {{!-- AuButton --}}
-            <button type="button">
+            <button type="button" {{on "click" (fn login.login account.id account.user.group.id)}}>
               login
             </button>
           </li>
