@@ -16,4 +16,5 @@ Router.map(function () {
   this.route('auth', function() {
     this.route('logout');
   });
+  this.route('logout');
 });

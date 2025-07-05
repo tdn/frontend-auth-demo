@@ -1,6 +1,6 @@
 <div class="application-header">
   {{#if this.currentSession.user}}
-    You are logged in as {{this.currentSession.user.firstName}} {{this.currentSession.user.lastName}}
+    You are logged in as {{this.currentSession.user.firstName}} {{this.currentSession.user.lastName}}. <a href="/logout">Log out</a>
   {{else}}
     You are logged out
   {{/if}}
