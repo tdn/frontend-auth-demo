@@ -1,0 +1,7 @@
+<div class="application-header">
+  {{#if this.currentSession.user}}
+    You are logged in as {{this.currentSession.user.firstName}} {{this.currentSession.user.lastName}}
+  {{else}}
+    You are logged out
+  {{/if}}
+</div>
