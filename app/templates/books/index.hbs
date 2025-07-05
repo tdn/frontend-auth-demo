@@ -5,7 +5,9 @@
 <ul>
   {{#each @model as |book|}}
     <li>
-      {{book.title}} <small>{{book.isbn}}</small>
+      <LinkTo @route="books.show" @model={{book}}>
+        {{book.title}} <small>{{book.isbn}}</small>
+      </LinkTo>
     </li>
   {{else}}
     <li>No books yet</li>

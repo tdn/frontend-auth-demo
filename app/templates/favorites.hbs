@@ -1,0 +1,14 @@
+{{page-title "Favorites"}}
+
+<h1>Favorites ({{this.currentSession.user.favorites.length}})</h1>
+
+{{this.currentSession.user}}
+
+<ul>
+  {{#each this.currentSession.user.favorites as |book|}}
+    hello
+    <li><LinkTo @route="books.show" @model={{book}}>{{book.title}}</LinkTo></li>
+  {{/each}}
+</ul>
+
+{{outlet}}

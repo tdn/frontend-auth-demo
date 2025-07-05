@@ -3,3 +3,12 @@
 <h1>Showing book {{@model.title}}</h1>
 
 <p>ISBN number: {{@model.isbn}}</p>
+
+<input
+  {{on "click" this.updateFavorite}}
+  id="favorite"
+  type="checkbox"
+  checked={{this.isFavorite.value}}
+  disabled={{or this.persisting (not this.currentSession.user)}}
+  />
+<label for="favorite">Favorite?</label>

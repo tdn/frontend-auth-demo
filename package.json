@@ -82,5 +82,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "reactiveweb": "^1.6.2"
   }
 }

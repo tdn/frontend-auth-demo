@@ -1,8 +1,5 @@
 import Service, { inject as service } from '@ember/service';
-import { get } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { isPresent } from '@ember/utils';
-import { later } from '@ember/runloop';
 
 export default class CurrentSessionService extends Service {
   @service session;
