@@ -1,7 +1,24 @@
 <div>
   <div>
+    <h2>SPARQL querying with Authorization</h2>
     <p>This <a href="https://yasgui.triply.cc/" target="_blank" rel="noopener noreferrer">YASGUI</a> editor sends an authenticated SPARQL query to the <a href="https://semantic.works">semantic.works</a> stack, where the query will be rewritten according to the authorization rules provided to <a href="https://github.com/mu-semtech/sparql-parser">sparql-parser</a>.</p>
-    <p>Depending on which profile you are <a href="#">logged in</a> as, you will either only be able to query public books, or also private books.</p>
+    <p>Depending on which profile you are logged in as, you will either only be able to query public books, or also private books.</p>
+    <p>To authenticate, replace <code>/sparql</code> by <code>/mock-login</code> in your address bar.</p>
+    <h2>Example queries</h2>
+    <p>List all books available in the database. Depending on your session, this will include "private" books, or only public ones.</p>
+    <pre>
+PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX dct: &lt;http://purl.org/dc/terms/&gt;
+PREFIX schema: &lt;http://schema.org/&gt;
+SELECT DISTINCT ?book ?title ?genre ?author ?issuedOn (GROUP_CONCAT(?sameAs;separator=',') AS ?sameAsLinks) WHERE {
+  ?book a schema:Book;
+       dct:title ?title ;
+       schema:genre ?genre ;
+       dct:creator ?author ;
+       dct:issued ?issuedOn ;
+       owl:sameAs ?sameAs .
+} GROUP BY ?book ?title ?genre ?author ?issuedOn ORDER BY ?book
+    </pre>
     <div {{yasgui}}></div>
   </div>
 </div>
