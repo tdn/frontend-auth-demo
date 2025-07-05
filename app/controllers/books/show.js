@@ -11,7 +11,7 @@ export default class BooksShowController extends Controller {
   @tracked currentUserRoles;
   @service currentSession;
 
-  get disableStoreFavorite(){
+  get disableStoreFavorite() {
     return !this.currentUserRoles?.includes(FAVORITE_STORING_ROLE);
   }
 

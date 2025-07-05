@@ -1,4 +1,4 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class BookModel extends Model {
   @attr('string') title;
@@ -8,4 +8,5 @@ export default class BookModel extends Model {
   @attr('string') genre;
   @attr('string') language;
   @attr('string') links;
+  @belongsTo( 'file', { async: true, inverse: null } ) qrCode;
 }

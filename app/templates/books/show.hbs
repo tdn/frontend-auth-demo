@@ -17,3 +17,13 @@
   disabled={{or this.persisting this.disableStoreFavorite}}
   />
 <label for="favorite">Favorite?</label>
+
+{{#if this.isFavorite.value}}
+  <p>This page has been favorited, which means a QR code will be generated for it.</p>
+  {{#if @model.qrCode}}
+    <p>Scan the QR code to visit this book's page</p>
+    <img src={{@model.qrCode.downloadUrl}} />
+  {{else}}
+    <p>The QR code may not have been generated yet and you may need to refresh the page.  Upon removing the favorite the QR code may be removed through an unfavorite action.</p>
+  {{/if}}
+{{/if}}
