@@ -1,20 +1,23 @@
-<div class="page-content">
-  <h1>SPARQL-parser demonstrator</h1>
-  <p>This demostrator showcases the key features of <a href="https://github.com/mu-semtech/sparql-parser">SPARQL-parser</a>, the authorization component of the <a href="https://semantic.works">semantic.works</a> framework.</p>
-  <h3>Scenario 1: Read Access</h3>
-  <p>The <a href="/sparql">sparql</a> endpoint showcases data access, allowing the user to query an example database of <code>schema:Book</code> resources, either publicly (unauthenticated) or using <code>/mock-login</code> to mimic an authenticated user.</p>
-  <p>When logged in as a "Private Book Access User", you will be able to read more books that you will as an unauthenticated user (or other user).</p>
-  <p>Similarly, when you access the data through the <a href="/books">books</a> list, you will see a longer list as a "Private Book Access User". This endpoint is created using <a href="https://github.com/mu-semtech/mu-cl-resources" target="_blank">mu-cl-resources</a>, which delivers JSON:API formatted resources from the triplestore to the frontend. In other words, even when browsing through the single-page-app, you are still getting data from SPARQL-parser.</p>
-  <h3>Scenario 2: Write Access</h3>
-  <p>When logged in as a "Favorite Storing User", you can also <em>write</em> data to the database.</p>
-  <p>Just navigate to any book through the <a href="/books">books</a> list, and tick the "favorite?" box. This will write a triple of the following form to the <code>http://mu.semte.ch/graphs/favorites</code> graph:</p>
-  <pre>&lt;https://authorization-demo.redpencil.io/user/b7873f46-12ac-4fa8-b5d8-48b03fedb389&gt;
-    ext:hasFavorite &lt;https://authorization-demo.redpencil.io/books/13b480838-285d-438b-8835-93cb8373f51c&gt;</pre>
-  <p>In fact, logged in as a "Favorite Storing User", you could also store this triple using the <a href="/sparql">sparql</a> endpoint and the following INSERT query:</p>
-  <pre>PREFIX ext: &lt;http://mu.semte.ch/vocabularies/ext/&gt;
+<h1>SPARQL-parser demonstrator</h1>
+<p>This demostrator showcases the key features of <a href="https://github.com/mu-semtech/sparql-parser">SPARQL-parser</a>, the authorization component of the <a href="https://semantic.works">semantic.works</a> framework.</p>
+<h3>Scenario 1: Read Access</h3>
+<p>The <a href="/sparql">sparql</a> endpoint showcases data access, allowing the user to query an example database of <code>schema:Book</code> resources, either publicly (unauthenticated) or using <code>/mock-login</code> to mimic an authenticated user.</p>
+<p>When logged in as a "Private Book Access User", you will be able to read more books that you will as an unauthenticated user (or other user).</p>
+<p>Similarly, when you access the data through the <a href="/books">books</a> list, you will see a longer list as a "Private Book Access User". This endpoint is created using <a href="https://github.com/mu-semtech/mu-cl-resources" target="_blank">mu-cl-resources</a>, which delivers JSON:API formatted resources from the triplestore to the frontend. In other words, even when browsing through the single-page-app, you are still getting data from SPARQL-parser.</p>
+
+<h3>Scenario 2: Write Access</h3>
+<p>When logged in as a "Favorite Storing User", you can also <em>write</em> data to the database.</p>
+<p>Just navigate to any book through the <a href="/books">books</a> list, and tick the "favorite?" box. This will write a triple of the following form to the <code>http://mu.semte.ch/graphs/favorites</code> graph:</p>
+<pre>&lt;https://authorization-demo.redpencil.io/user/b7873f46-12ac-4fa8-b5d8-48b03fedb389&gt;
+  ext:hasFavorite &lt;https://authorization-demo.redpencil.io/books/13b480838-285d-438b-8835-93cb8373f51c&gt;</pre>
+<p>In fact, logged in as a "Favorite Storing User", you could also store this triple using the <a href="/sparql">sparql</a> endpoint and the following INSERT query:</p>
+<pre>PREFIX ext: &lt;http://mu.semte.ch/vocabularies/ext/&gt;
 INSERT DATA {
   &lt;https://authorization-demo.redpencil.io/user/b7873f46-12ac-4fa8-b5d8-48b03fedb389&gt;
   ext:hasFavorite &lt;https://authorization-demo.redpencil.io/books/13b480838-285d-438b-8835-93cb8373f51c&gt;
 }</pre>
-  <p>Note that this INSERT will not work for unauthenticated users, nor any other profile, thanks to the SPARQL-parser rules.</p>
-</div>
+<p>Note that this INSERT will not work for unauthenticated users, nor any other profile, thanks to the SPARQL-parser rules.</p>
+
+<h3>Scenario 3: Delta Handling (in progress)</h3>
+<p>To demonstrate the delta-notification functionality of SPARQL-parser, each time the "Favorite Storing User" changes a favorite, an action will automatically execute (such as generating a QR code and writing it to the database)</p>
+<p>This data will be written to a different graph than either of the users has write access to, demonstrating the "scoped service" feature of SPARQL-parser.</p>

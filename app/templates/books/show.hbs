@@ -1,14 +1,19 @@
 {{page-title "Show"}}
-
+<a href="/books">back to all books</a>
 <h1>Showing book {{@model.title}}</h1>
 
-<p>ISBN number: {{@model.isbn}}</p>
+<ul>
+  <li>Author: {{@model.author}}</li>
+  <li>Publication Date: {{@model.publicationDate}}</li>
+  <li>Genre: {{@model.genre}}</li>
+  <li>External links: <a href="{{@model.links}}" target="_blank">{{@model.links}}</a></li>
+</ul>
 
 <input
   {{on "click" this.updateFavorite}}
   id="favorite"
   type="checkbox"
   checked={{this.isFavorite.value}}
-  disabled={{or this.persisting (not this.currentSession.user)}}
+  disabled={{or this.persisting this.disableStoreFavorite}}
   />
 <label for="favorite">Favorite?</label>
