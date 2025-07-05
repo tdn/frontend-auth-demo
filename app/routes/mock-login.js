@@ -11,7 +11,7 @@ export default class MockLoginRoute extends Route {
 
   model() {
     return this.store.queryAll('account', {
-      include: 'user,user.memberships',
+      include: 'user,user.organization',
       filter: {
         provider: 'https://github.com/lblod/mock-login-service',
       },
