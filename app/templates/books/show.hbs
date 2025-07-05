@@ -18,12 +18,16 @@
   />
 <label for="favorite">Favorite?</label>
 
+{{#if @model.qrCode}}
+  <p>
+  This book has received a QR code, this happens when a book has been favorited.  Scan it to visit the URI of the book.  Each favorite or unfavorite triple change is pushed to the service generating qr codes.  This works because sparql-parser knows exactly what has changed and can inform services about these changes.  A QR code is generated when a book is favorited by at least one user and is removed when no more users have favorited the book.
+  </p>
+  <p>Scan the QR code to visit this book's page</p>
+  <img src={{@model.qrCode.downloadUrl}} />
+{{/if}}
+
 {{#if this.isFavorite.value}}
-  <p>This page has been favorited, which means a QR code will be generated for it.</p>
-  {{#if @model.qrCode}}
-    <p>Scan the QR code to visit this book's page</p>
-    <img src={{@model.qrCode.downloadUrl}} />
-  {{else}}
-    <p>The QR code may not have been generated yet and you may need to refresh the page.  Upon removing the favorite the QR code may be removed through an unfavorite action.</p>
-  {{/if}}
+  {{#unless @model.qrCode}}
+    <p>This page has been favorited and a QR code will be generated for it.  We add delays to the processing of about 2 seconds.  You may need to refresh the page to see the QR code.</p>
+  {{/unless}}
 {{/if}}
