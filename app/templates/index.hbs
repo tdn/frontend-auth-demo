@@ -18,6 +18,7 @@ INSERT DATA {
 }</pre>
 <p>Note that this INSERT will not work for unauthenticated users, nor any other profile, thanks to the SPARQL-parser rules.</p>
 
-<h3>Scenario 3: Delta Handling (in progress)</h3>
-<p>To demonstrate the delta-notification functionality of SPARQL-parser, each time the "Favorite Storing User" changes a favorite, an action will automatically execute (such as generating a QR code and writing it to the database)</p>
-<p>This data will be written to a different graph than either of the users has write access to, demonstrating the "scoped service" feature of SPARQL-parser.</p>
+<h3>Scenario 3: Delta Handling and Scoped Services</h3>
+<p>To demonstrate the delta-notification functionality of SPARQL-parser, each time the "Favorite Storing User" changes a favorite, a QR-code generating service will automatically execute.</p>
+<p>As evident from the <a href="https://github.com/tdn/app-auth-demo/blob/main/config/authorization/config.lisp#L147-L153">SPARQL-parser config</a>, this data will be written to a <a href="https://github.com/tdn/app-auth-demo/blob/main/config/authorization/config.lisp#L100-L111">different graph</a> than either of the users has write access to, demonstrating the "scoped service" feature of SPARQL-parser.</p>
+<p>To test this, use <code>/mock-login</code> to log in as a "Favorite storing user", and check the "favorite" checkbox on one of the books. You'll see a message telling you to refresh the page, after which a QR code will be visible on the book page.</p>
